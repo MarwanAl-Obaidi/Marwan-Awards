@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar/navbar';
 
 const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleSignUp = async () => {
         try {
             await createUserWithEmailAndPassword(auth, email, password);
             console.log("User signed up successfully!");
+            navigate('/dashboard');
         } catch (error) {
             console.error("Error signing up:", error.message);
         }
