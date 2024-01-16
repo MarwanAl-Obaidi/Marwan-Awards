@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './navbar.css';
+import { useAuth } from '../authprovider/authprovider';
 
 const Navbar = () => {
+    const { user } = useAuth();
+
     return (
         <nav className="navbar">
             <ul>
@@ -15,15 +18,21 @@ const Navbar = () => {
                 <li>
                     <Link to="/defaultcoin">Default Coin</Link>
                 </li>
-                <li>
-                    <Link to="/signup">Sign Up</Link>
-                </li>
-                <li>
-                    <Link to="/login">Login</Link>
-                </li>
-                <li>
-                    <Link to="/dashboard">Dashboard</Link>
-                </li>
+                {!user && (
+                    <>
+                        <li>
+                            <Link to="/signup">Sign Up</Link>
+                        </li>
+                        <li>
+                            <Link to="/login">Login</Link>
+                        </li>
+                    </>
+                )}
+                {user && (
+                    <li>
+                        <Link to="/dashboard">Dashboard</Link>
+                    </li>
+                )}
             </ul>
         </nav>
     );

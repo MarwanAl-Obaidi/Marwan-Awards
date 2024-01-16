@@ -7,14 +7,14 @@ import SignUp from './views/signup/signup';
 import Login from './views/login/login';
 import Dashboard from "./views/dashboard/dashboard";
 import { useAuth } from './components/authprovider/authprovider';
-import Navbar from "./components/navbar/navbar";
+// import Navbar from "./components/navbar/navbar";
 
 function App() {
   const { user } = useAuth();
 
   return (
     <Router>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
