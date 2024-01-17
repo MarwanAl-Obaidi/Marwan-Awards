@@ -18,6 +18,9 @@ const Navbar = () => {
                 <li>
                     <Link to="/defaultcoin">Default Coin</Link>
                 </li>
+                <li>
+                    <Link to="/awards">Awards</Link>
+                </li>
                 {!user && (
                     <>
                         <li>
