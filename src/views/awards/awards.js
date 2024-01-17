@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { useAuth } from '../../components/authprovider/authprovider';
 import Navbar from '../../components/navbar/navbar';
+import { Link } from 'react-router-dom';
+import AwardDetails from '../awarddetails/awarddetails';
 
 const Awards = () => {
     const { user } = useAuth();
@@ -44,7 +46,7 @@ const Awards = () => {
                     <ul>
                         {organizedAwards[type].map((award) => (
                             <li key={award.id}>
-                                <p>{award.awardName}</p>
+                                <Link to={`/awards/${award.id}`}>{award.awardName}</Link>
                             </li>
                         ))}
                     </ul>

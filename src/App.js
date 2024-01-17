@@ -10,6 +10,7 @@ import { useAuth } from './components/authprovider/authprovider';
 // import Navbar from "./components/navbar/navbar";
 import AwardUpload from "./views/awardupload/awardupload";
 import Awards from "./views/awards/awards";
+import AwardDetails from "./views/awarddetails/awarddetails";
 
 function App() {
   const { user } = useAuth();
@@ -22,6 +23,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/defaultcoin" element={<DefaultCoin />} />
         <Route path="/awards" element={<Awards />} />
+        <Route path="/awards/:awardId" element={<AwardDetails />} />
         {user ? (
           <>
             <Route path="/dashboard" element={<Dashboard />} />
