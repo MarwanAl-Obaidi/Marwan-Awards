@@ -24,19 +24,32 @@ const Awards = () => {
         fetchAwards();
     }, []);
 
+    // Organize awards by type
+    const organizedAwards = {};
+    awards.forEach((award) => {
+        if (!organizedAwards[award.awardType]) {
+            organizedAwards[award.awardType] = [];
+        }
+        organizedAwards[award.awardType].push(award);
+    });
+
     return (
         <div>
             <Navbar />
             <h2>Awards List</h2>
-            <ul>
-                {awards.map((award) => (
-                    <li key={award.id}>
-                        <p>Award Name: {award.awardName}</p>
-                        <p>Award Type: {award.awardType}</p>
-                        <img src={award.downloadURL} alt="Award" />
-                    </li>
-                ))}
-            </ul>
+
+            {Object.keys(organizedAwards).map((type) => (
+                <div key={type}>
+                    <h3>{type} Awards</h3>
+                    <ul>
+                        {organizedAwards[type].map((award) => (
+                            <li key={award.id}>
+                                <p>{award.awardName}</p>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
         </div>
     );
 };
