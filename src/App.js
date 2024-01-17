@@ -8,6 +8,7 @@ import Login from './views/login/login';
 import Dashboard from "./views/dashboard/dashboard";
 import { useAuth } from './components/authprovider/authprovider';
 // import Navbar from "./components/navbar/navbar";
+import AwardUpload from "./views/awardupload/awardupload";
 
 function App() {
   const { user } = useAuth();
@@ -22,9 +23,15 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         {user ? (
-          <Route path="/dashboard" element={<Dashboard />} />
+          <>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/awardupload" element={<AwardUpload />} />
+          </>
         ) : (
-          <Route path="/dashboard" element={<Navigate to="/login" />} />
+          <>
+            <Route path="/dashboard" element={<Navigate to="/login" />} />
+            <Route path="/awardupload" element={<Navigate to="/login" />} />
+          </>
         )}
         <Route path="*" element={<h1>Not Found!</h1>} />
       </Routes>
