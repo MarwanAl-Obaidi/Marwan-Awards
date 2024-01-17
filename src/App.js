@@ -20,15 +20,17 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/defaultcoin" element={<DefaultCoin />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
         {user ? (
           <>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/awardupload" element={<AwardUpload />} />
+            <Route path="/signup" element={<Navigate to="/dashboard" />} />
+            <Route path="/login" element={<Navigate to="/dashboard" />} />
           </>
         ) : (
           <>
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Navigate to="/login" />} />
             <Route path="/awardupload" element={<Navigate to="/login" />} />
           </>
