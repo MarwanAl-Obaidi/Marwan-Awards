@@ -15,8 +15,11 @@ const Navbar = () => {
                 <li>
                     <Link to="/about">About</Link>
                 </li>
-                <li>
+                {/* <li>
                     <Link to="/defaultcoin">Default Coin</Link>
+                </li> */}
+                <li>
+                    <Link to="/awards">Awards</Link>
                 </li>
                 {!user && (
                     <>

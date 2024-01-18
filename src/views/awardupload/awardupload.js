@@ -41,13 +41,16 @@ const AwardUpload = () => {
             const url = await getDownloadURL(storageRef);
             setDownloadURL(url);
 
-            // Store award data in Firestore
+            // Get the file extension
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+
             const db = getFirestore();
             const awardsCollection = collection(db, 'awards');
             const newAwardDoc = await addDoc(awardsCollection, {
                 userId: user.uid,
                 awardName,
                 awardType,
+                fileExtension,
                 downloadURL: url,
                 createdAt: new Date(),
             });
@@ -55,6 +58,7 @@ const AwardUpload = () => {
             console.log('File uploaded successfully!');
             console.log('Award Name:', awardName);
             console.log('Award Type:', awardType);
+            console.log('File Extension:', fileExtension);
             console.log('Firestore Document ID:', newAwardDoc.id);
         } catch (error) {
             console.error('Error uploading file:', error.message);
