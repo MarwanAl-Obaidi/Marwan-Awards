@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Home from './views/home/home';
 import About from './views/about/about';
 // import DefaultCoin from './views/defaultcoin/defaultcoin';
-import SignUp from './views/signup/signup';
+// import SignUp from './views/signup/signup';
 import Login from './views/login/login';
 import Dashboard from "./views/dashboard/dashboard";
 import { useAuth } from './components/authprovider/authprovider';
@@ -28,12 +28,12 @@ function App() {
           <>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/awardupload" element={<AwardUpload />} />
-            <Route path="/signup" element={<Navigate to="/dashboard" />} />
+            {/* <Route path="/signup" element={<Navigate to="/dashboard" />} /> */}
             <Route path="/login" element={<Navigate to="/dashboard" />} />
           </>
         ) : (
           <>
-            <Route path="/signup" element={<SignUp />} />
+            {/* <Route path="/signup" element={<SignUp />} /> */}
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Navigate to="/login" />} />
             <Route path="/awardupload" element={<Navigate to="/login" />} />

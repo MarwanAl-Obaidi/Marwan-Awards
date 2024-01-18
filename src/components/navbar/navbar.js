@@ -23,9 +23,9 @@ const Navbar = () => {
                 </li>
                 {!user && (
                     <>
-                        <li>
+                        {/* <li>
                             <Link to="/signup">Sign Up</Link>
-                        </li>
+                        </li> */}
                         <li>
                             <Link to="/login">Login</Link>
                         </li>
