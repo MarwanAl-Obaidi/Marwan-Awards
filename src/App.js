@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './views/home/home';
 import About from './views/about/about';
-import DefaultCoin from './views/defaultcoin/defaultcoin';
+// import DefaultCoin from './views/defaultcoin/defaultcoin';
 import SignUp from './views/signup/signup';
 import Login from './views/login/login';
 import Dashboard from "./views/dashboard/dashboard";
@@ -21,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/defaultcoin" element={<DefaultCoin />} />
+        {/* <Route path="/defaultcoin" element={<DefaultCoin />} /> */}
         <Route path="/awards" element={<Awards />} />
         <Route path="/awards/:awardId" element={<AwardDetails />} />
         {user ? (
