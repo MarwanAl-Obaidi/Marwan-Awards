@@ -4,15 +4,15 @@ import { useParams } from 'react-router-dom';
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, Stage, PresentationControls } from "@react-three/drei";
 
-function Model({ url }) {
-    const { scene } = useGLTF(url);
+const Model = (props) => {
+    const { scene } = useGLTF(props.url);
 
     useFrame(({ clock }) => {
         scene.rotation.y = 0.2 * clock.getElapsedTime(); // rotation speed
     });
 
-    return <primitive object={scene} />;
-}
+    return <primitive object={scene} {...props} />;
+};
 
 const AwardDetails = () => {
     const { awardId } = useParams();
@@ -44,16 +44,26 @@ const AwardDetails = () => {
     }
 
     return (
-        <div>
-            {awardDetails.fileExtension && awardDetails.fileExtension.toLowerCase() === 'glb' && (
-                <Canvas dpr={[1, 1]} shadows camera={{ fov: 45 }} style={{ position: "absolute" }}>
-                    <color attach="background" args={["#101010"]} />
-                    <PresentationControls speed={1.5} global zoom={0.5} polar={[-0.1, Math.PI / 4]}>
-                        <Stage adjustCamera intensity={0.05} environment="city">
-                            <Model url={awardDetails.downloadURL} />
-                        </Stage>
-                    </PresentationControls>
-                </Canvas>
+        <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
+            {awardDetails.fileExtension && (
+                <>
+                    {awardDetails.fileExtension.match(/(jpg|jpeg|png|gif)$/i) ? (
+                        <img
+                            src={awardDetails.downloadURL}
+                            alt={`Award ${awardDetails.awardName}`}
+                            style={{ maxWidth: '100%', maxHeight: '100%' }}
+                        />
+                    ) : (
+                        <Canvas dpr={[1, 1]} shadows camera={{ fov: 45 }} style={{ "position": 'absolute' }}>
+                            <color attach="background" args={["#101010"]} />
+                            <PresentationControls speed={1.5} global zoom={0.5} polar={[-0.1, Math.PI / 4]}>
+                                <Stage adjustCamera intensity={0.05} environment="city">
+                                    <Model url={awardDetails.downloadURL} scale={0.01} />
+                                </Stage>
+                            </PresentationControls>
+                        </Canvas>
+                    )}
+                </>
             )}
         </div>
     );
