@@ -35,10 +35,16 @@ const Awards = () => {
         organizedAwards[award.awardType].push(award);
     });
 
+    const handleDownload = (downloadURL) => {
+        window.open(downloadURL, '_blank');
+    };
+
     return (
         <div>
             <Navbar />
             <h2>Awards List</h2>
+
+            <p>Awards can be viewed on browser or downloaded for later use.</p>
 
             {Object.keys(organizedAwards).map((type) => (
                 <div key={type}>
@@ -47,6 +53,8 @@ const Awards = () => {
                         {organizedAwards[type].map((award) => (
                             <li key={award.id}>
                                 <Link to={`/awards/${award.id}`}>{award.awardName}</Link>
+                                <span style={{ margin: '0 10px' }}></span>
+                                <button onClick={() => handleDownload(award.downloadURL)}>Download</button>
                             </li>
                         ))}
                     </ul>
